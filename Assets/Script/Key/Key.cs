@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class Key : MonoBehaviour, Ikey
 {
-    int _openCount = 0;
+    [SerializeField]
+    private KeyType _key;
+    
+    private int _openCount = 0;
+    
+    private enum KeyType
+    {
+        ExitKey,
+        HomeEconomicsRoomKey,
+        MusicRoomKey
+    }
     
     public void Open()
     {
-        _openCount++;
-        Debug.Log($"{_openCount}回目");
-        if (_openCount == 5)
+        if (_key == KeyType.ExitKey)
         {
-            Debug.Log("鍵を開けた");
+            _openCount++;
+            Debug.Log($"{_openCount}回目");
+            if (_openCount == 5)
+            {
+                Debug.Log("鍵を開けた");
+            }   
         }
     }
 }
