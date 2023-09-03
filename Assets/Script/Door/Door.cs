@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Door : MonoBehaviour
 {
     [SerializeField]
@@ -12,12 +12,11 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("反応はしてる");
         if (other.tag == "Player")
         {
             if (_getKey.IsOpen)
             {
-                Debug.Log("脱出");
+                SceneManager.LoadScene("GameClear");
             }
         }
     }
