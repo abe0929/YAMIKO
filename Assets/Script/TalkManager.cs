@@ -57,6 +57,10 @@ public class TalkManager : MonoBehaviour
     private async void CoText(int value)
     {
         var data = _gssManager.Datas;
+        if (data.Length == value)
+        {
+            DrawText("", "");
+        }
         Debug.Log($"現在：{value}行");
         DrawText(data[value][NAME_LINE], data[value][TALK_LINE]);
         await Skip();
