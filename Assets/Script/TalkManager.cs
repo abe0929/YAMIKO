@@ -36,6 +36,12 @@ public class TalkManager : MonoBehaviour
     [SerializeField]
     private GameData _gameData;
 
+    [SerializeField]
+    private GameObject _yamiko;
+
+    [SerializeField]
+    private GameObject[] _text;
+
     private const int NAME_LINE = 0;
     private const int TALK_LINE = 1;
 
@@ -57,6 +63,13 @@ public class TalkManager : MonoBehaviour
     private async void CoText(int value)
     {
         var data = _gssManager.Datas;
+        if (data.Length == value)
+        {
+            DrawText("", "");
+            _yamiko.SetActive(true);
+            _text[0].SetActive(false);
+            _text[1].SetActive(false);
+        }
         Debug.Log($"現在：{value}行");
         DrawText(data[value][NAME_LINE], data[value][TALK_LINE]);
         await Skip();
